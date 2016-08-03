@@ -1,0 +1,43 @@
+<%
+# why not this?
+# action_url = action == :new ? cats_url : cat_url(cat)
+action_url = cat.persisted? ? cat_url(cat) : cats_url
+%>
+
+<form action ="<%= action_url %>" method="POST">
+
+  <% if action == :edit %>
+    <input type="hidden" name="_method" value="PATCH">
+  <% end %>
+
+  <label>
+    Name:
+    <input type="text" name="cat[name]" value = "<%= cat.name %>">
+  </label>
+
+  <label>
+    Sex:
+    M<input type="radio" name="cat[sex]" value="M" <%= "checked" if cat.sex == 'M' %> >
+    F<input type="radio" name="cat[sex]" value="F" <%= "checked" if cat.sex == 'F' %> >
+  </label>
+
+  <select name="cat[color]">
+    <option disabled <%= "selected" unless cat.color %>>Select a color</option>
+    <option value="black" <%= "selected" if cat.color == 'black' %>>Black</option>
+    <option value="orange" <%= "selected" if cat.color == 'orange' %>>Orange</option>
+    <option value="white" <%= "selected" if cat.color == 'white' %>>White</option>
+    <option value="brown" <%= "selected" if cat.color == 'brown' %>>Brown</option>
+  </select>
+
+  <label>
+    <input type="date" name="cat[birth_date]" value="<%= cat.birth_date %>">
+  </label>
+
+  <label>
+    Description:
+    <textarea name="cat[description]" rows="8" cols="40"><%= cat.description %></textarea>
+  </label>
+
+  <input type="submit" value=" <%= action == :new ? 'Create' : 'Edit' %> Cat!"/>
+
+</form>

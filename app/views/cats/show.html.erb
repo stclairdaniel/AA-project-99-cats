@@ -1,0 +1,29 @@
+<h1>
+  <%= @cat.name %>
+</h1>
+
+
+<% attrs = @cat.attributes.reject { |attr| ["created_at", "updated_at", "id"].include?(attr)} %>
+
+<table>
+  <tr>
+    <th>Feature</th>
+    <th>Value</th>
+  </tr>
+  <% attrs.each do |attribute, value| %>
+    <tr>
+      <td>
+        <%= attribute  %>
+      </td>
+      <td>
+        <%= value %>
+      </td>
+    </tr>
+  <% end %>
+</table>
+
+<ul>
+  <% @cat.cat_rental_requests.all.each do |request| %>
+  <li><strong><%= request.start_date %></strong> to <strong><%= request.end_date %></strong> | <%= request.status %> <%= button_to "approve" action: approve_cat_rental_request_url(request) if request.pending? %> <%= button_to "Deny" action: deny_cat_rental_request_url(request) if request.pending? %></li>
+  <% end %>
+</ul>
