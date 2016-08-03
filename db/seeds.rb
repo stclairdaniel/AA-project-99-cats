@@ -18,13 +18,20 @@ CatRentalRequest.create!({
   cat_id: 1,
   start_date: '2016/01/01',
   end_date:'2016/01/30',
-  status: 'APPROVED'
+  status: 'PENDING'
 })
 
 CatRentalRequest.create!({
   cat_id: 1,
-  start_date: '2016/02/05',
-  end_date: '2016/02/10',
+  start_date: '2016/01/05',
+  end_date: '2016/01/10',
+  status: 'PENDING'
+})
+
+CatRentalRequest.create!({
+  cat_id: 1,
+  start_date: '2016/01/06',
+  end_date: '2016/01/09',
   status: 'PENDING'
 })
 

@@ -24,6 +24,6 @@
 
 <ul>
   <% @cat.cat_rental_requests.all.each do |request| %>
-  <li><strong><%= request.start_date %></strong> to <strong><%= request.end_date %></strong> | <%= request.status %> <%= button_to "approve" action: approve_cat_rental_request_url(request) if request.pending? %> <%= button_to "Deny" action: deny_cat_rental_request_url(request) if request.pending? %></li>
+  <li><strong><%= request.start_date %></strong> to <strong><%= request.end_date %></strong> | <%= request.status %> <%= button_to "approve", approve_cat_rental_request_url(request), method: :post if request.pending? %> <%= button_to "Deny", deny_cat_rental_request_url(request), method: :post if request.pending? %></li>
   <% end %>
 </ul>
